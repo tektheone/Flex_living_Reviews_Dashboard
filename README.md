@@ -64,6 +64,30 @@ npm run dev
 
 5. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
+## 🌐 Deploy to Vercel
+
+### Option A: Automated Deployment with Credentials (Recommended)
+
+```bash
+npm run deploy:vercel
+```
+
+This script will:
+1. Install Vercel CLI (if needed)
+2. Login to your Vercel account
+3. Link your project
+4. Add Hostaway credentials automatically
+5. Deploy to production
+
+### Option B: Manual Deployment
+
+1. Push code to GitHub (already done)
+2. Go to https://vercel.com and import your repository
+3. Manually add environment variables in Settings → Environment Variables
+4. Deploy
+
+For detailed instructions, see [DOCUMENTATION.md](DOCUMENTATION.md#deployment-to-vercel)
+
 ## 📁 Project Structure
 
 ```
