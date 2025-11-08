@@ -4,10 +4,11 @@ import { getSelectedReviewsByProperty } from "@/lib/reviews";
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const property = await getPropertyById(params.id);
+    const { id } = await params;
+    const property = await getPropertyById(id);
     
     if (!property) {
       return NextResponse.json(
@@ -19,7 +20,7 @@ export async function GET(
       );
     }
     
-    const reviews = await getSelectedReviewsByProperty(params.id);
+    const reviews = await getSelectedReviewsByProperty(id);
     
     return NextResponse.json({
       success: true,
