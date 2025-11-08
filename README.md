@@ -4,7 +4,7 @@ A comprehensive reviews management system for Flex Living properties, featuring 
 
 ## 🚀 Features
 
-- **Hostaway API Integration**: Fetches and normalizes review data from Hostaway API
+- **Hostaway & Google Reviews Integration**: Aggregates and normalizes review data from Hostaway API and Google Places API (with graceful fallbacks when credentials are missing)
 - **Manager Dashboard**: 
   - View all reviews across properties
   - Filter and sort reviews by property, rating, channel, and date
@@ -22,8 +22,8 @@ A comprehensive reviews management system for Flex Living properties, featuring 
 - **Framework**: Next.js 14 (App Router)
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS
-- **Data Storage**: JSON file-based storage
-- **API Integration**: Hostaway Reviews API
+- **Data Storage**: JSON file-based storage (with in-memory fallback for serverless environments)
+- **API Integration**: Hostaway Reviews API + Google Places API (optional)
 
 ## 📋 Prerequisites
 
@@ -55,6 +55,7 @@ Create a `.env.local` file in the root directory:
 ```
 HOSTAWAY_ACCOUNT_ID=61148
 HOSTAWAY_API_KEY=f94377ebbbb479490bb3ec364649168dc443dda2e4830facaf5de2e74ccc9152
+GOOGLE_PLACES_API_KEY=your_google_places_api_key_here
 ```
 
 4. Run the development server:
@@ -64,30 +65,6 @@ npm run dev
 
 5. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## 🌐 Deploy to Vercel
-
-### Option A: Automated Deployment with Credentials (Recommended)
-
-```bash
-npm run deploy:vercel
-```
-
-This script will:
-1. Install Vercel CLI (if needed)
-2. Login to your Vercel account
-3. Link your project
-4. Add Hostaway credentials automatically
-5. Deploy to production
-
-### Option B: Manual Deployment
-
-1. Push code to GitHub (already done)
-2. Go to https://vercel.com and import your repository
-3. Manually add environment variables in Settings → Environment Variables
-4. Deploy
-
-For detailed instructions, see [DOCUMENTATION.md](DOCUMENTATION.md#deployment-to-vercel)
-
 ## 📁 Project Structure
 
 ```
@@ -95,10 +72,10 @@ flex/
 ├── app/
 │   ├── api/
 │   │   ├── reviews/
-│   │   │   ├── hostaway/       # Main reviews API endpoint
+│   │   │   ├── hostaway/         # Aggregated reviews endpoint (Hostaway + Google)
 │   │   │   └── toggle-selection/ # Toggle review visibility
-│   │   ├── properties/         # Properties list endpoint
-│   │   └── property/[id]/      # Property details endpoint
+│   │   ├── properties/           # Properties list endpoint
+│   │   └── property/[id]/        # Property details endpoint
 │   ├── dashboard/              # Manager dashboard page
 │   ├── property/[id]/          # Public property pages
 │   └── page.tsx                # Home page
@@ -108,10 +85,12 @@ flex/
 │   ├── PropertyCard.tsx        # Property stats card
 │   └── FilterBar.tsx           # Filtering controls
 ├── lib/
-│   ├── hostaway.ts             # Hostaway API client
-│   ├── reviews.ts              # Review normalization logic
-│   ├── properties.ts           # Property data utilities
-│   └── storage.ts              # JSON file storage utilities
+│   ├── hostaway.ts               # Hostaway API client
+│   ├── googleReviews.ts          # Google Places API client & normalization
+│   ├── reviewUtils.ts            # Shared review utilities
+│   ├── reviews.ts                # Review aggregation logic
+│   ├── properties.ts             # Property data utilities
+│   └── storage.ts                # JSON file storage utilities with serverless fallback
 ├── types/
 │   └── review.ts               # TypeScript interfaces
 └── data/

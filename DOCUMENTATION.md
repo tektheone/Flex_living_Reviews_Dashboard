@@ -42,28 +42,41 @@ This document provides detailed technical information about the Flex Living Revi
 ### Data Flow
 
 ```
-┌─────────────┐
-│  Hostaway   │
-│   API       │──────┐
-└─────────────┘      │
-                     ▼
-              ┌──────────────┐
-              │  /api/reviews│
-              │   /hostaway  │◄─── Mock Data (JSON)
-              └──────┬───────┘
-                     │
-         ┌───────────┴───────────┐
-         ▼                       ▼
-┌─────────────────┐    ┌─────────────────┐
-│    Dashboard    │    │  Property Page  │
-│  (All Reviews)  │    │ (Selected Only) │
-└─────────────────┘    └─────────────────┘
-         │
-         ▼
-┌─────────────────┐
-│ Toggle Selection│
-│      API        │──► review-selections.json
-└─────────────────┘
+        ┌─────────────┐
+        │  Hostaway   │
+        │     API     │
+        └─────────────┘
+              │
+              │
+              ▼
+        ┌─────────────┐
+        │ /api/reviews│
+        │  /hostaway  │◄─── Mock Reviews (JSON)
+        └──────┬──────┘
+              ▲
+              │
+        ┌─────────────┐
+        │  Google     │
+        │ Places API  │
+        └─────────────┘
+              │
+              ▼
+    ┌────────────────────┐
+    │ Review Aggregation │
+    │ (Normalization)    │
+    └────────┬───────────┘
+             │
+   ┌─────────┴─────────┐
+   ▼                   ▼
+┌────────────┐   ┌──────────────┐
+│ Dashboard  │   │ Property Page│
+│ (All data) │   │ (Selected)   │
+└────────────┘   └──────────────┘
+      │
+      ▼
+┌──────────────┐
+│Toggle API    │──► review-selections.json / in-memory fallback
+└──────────────┘
 ```
 
 ### API Routes
@@ -74,15 +87,16 @@ This document provides detailed technical information about the Flex Living Revi
 
 **Process:**
 1. Attempts to fetch reviews from Hostaway API using credentials
-2. Merges with mock data (since sandbox API is empty)
-3. Normalizes review structure:
+2. Fetches Google Places reviews for each property (when API key and Place IDs are configured)
+3. Merges both data sources with curated mock data (since Hostaway sandbox is empty)
+4. Normalizes review structure:
    - Extracts property ID from listing name
    - Calculates average rating from categories
    - Formats guest names (First + Last Initial)
    - Standardizes date formats
-   - Assigns channel information
-4. Loads selected review IDs from storage
-5. Returns normalized reviews with selection status
+   - Assigns channel information (Airbnb, Booking.com, Google, etc.)
+5. Loads selected review IDs from storage (file system locally, in-memory fallback on serverless)
+6. Returns normalized reviews with selection status
 
 **Response Format:**
 ```json
@@ -350,118 +364,42 @@ Content-Type: application/json
 }
 ```
 
-**Concurrency:**
+**Concurrency & Serverless Notes:**
 - No locking mechanism (single-user assumption)
 - Race conditions possible with concurrent requests
-- Would need database with transactions for production
+- Serverless deployments (e.g., Vercel) use an in-memory fallback because the filesystem is read-only
+- A database (PostgreSQL/MongoDB/etc.) is recommended for production persistence
 
-## Google Reviews Integration - Findings
+## Google Reviews Integration
 
-### Research Summary
+### Implementation Summary
 
-**Google Places API - Reviews:**
+- Google Places API (Place Details endpoint) is integrated directly into the main `/api/reviews/hostaway` aggregation flow.
+- Each property includes a `googlePlaceId` in `mock-properties.json`.
+- When a `GOOGLE_PLACES_API_KEY` is provided, the system fetches up to five reviews per property from Google and normalizes them into the same structure as Hostaway reviews.
+- Reviews are labeled with the `channel` value `Google`, so they can be filtered on the dashboard.
+- If the API key is missing or a request fails, the system logs a warning and gracefully skips Google data without breaking the page.
 
-The Google Places API provides access to reviews through the Places Details endpoint.
+### Normalization Rules
 
-**API Endpoint:**
+- Reviewer names are converted to `First L.` format, similar to Hostaway data.
+- Review dates use the UNIX timestamp provided by Google and are formatted through the shared `formatDate` utility.
+- Ratings are mapped directly (Google uses a 1–5 scale).
+- Review text populates `reviewText`, and category breakdowns are left empty (Google does not provide category scores).
+- Review IDs are generated deterministically from the property ID and Google timestamps to ensure toggle persistence.
+
+### Environment Requirements
+
 ```
-https://maps.googleapis.com/maps/api/place/details/json
-  ?place_id={PLACE_ID}
-  &fields=name,rating,reviews
-  &key={API_KEY}
-```
-
-**Key Findings:**
-
-1. **Availability:**
-   - ✅ API is available and well-documented
-   - ✅ Returns up to 5 most relevant reviews per request
-   - ⚠️ Requires Place ID (must be obtained separately)
-
-2. **Limitations:**
-   - Maximum 5 reviews per request
-   - Reviews cannot be filtered or sorted
-   - No pagination for additional reviews
-   - 24-hour caching recommended by Google
-   - Cannot display reviews without attribution
-
-3. **Cost Considerations:**
-   - $0.017 per request (Basic Data)
-   - $0.032 per request with reviews (Contact Data)
-   - Free tier: $200/month credit (~6,250 requests)
-   - Would need budget planning for production
-
-4. **Data Structure:**
-```json
-{
-  "result": {
-    "reviews": [
-      {
-        "author_name": "John Doe",
-        "rating": 5,
-        "text": "Great place!",
-        "time": 1638360000,
-        "profile_photo_url": "...",
-        "relative_time_description": "a month ago"
-      }
-    ]
-  }
-}
+GOOGLE_PLACES_API_KEY=your_google_places_api_key_here
 ```
 
-5. **Integration Feasibility:**
-   - ✅ Technically feasible
-   - ⚠️ Requires Google Place IDs for each property
-   - ⚠️ Limited to 5 reviews (not comprehensive)
-   - ⚠️ Must display "Google" attribution
-   - ⚠️ Additional API costs
+### Limitations & Considerations
 
-### Implementation Approach (If Proceeding)
-
-1. **Place ID Mapping:**
-   - Add `googlePlaceId` field to property data
-   - Obtain Place IDs via Places Search API
-
-2. **Integration Point:**
-   - Create `/api/reviews/google` endpoint
-   - Fetch Google reviews separately from Hostaway
-   - Normalize to common review format
-   - Merge with Hostaway reviews in dashboard
-
-3. **Attribution:**
-   - Display "Google" logo with reviews
-   - Link to Google Maps listing
-   - Follow Google's display requirements
-
-### Recommendation
-
-**For Production:**
-- Implement Google Reviews if properties have Google Business listings
-- Display alongside Hostaway reviews with clear source labeling
-- Cache responses for 24 hours to minimize costs
-- Consider Google Reviews as supplementary, not primary source
-
-**For This Assessment:**
-- Document findings (completed above)
-- Focus on Hostaway integration as primary source
-- Google integration can be added later if needed
-
-### Alternative Approaches
-
-1. **Google Reviews Embedding:**
-   - Use Google's review widget/iframe
-   - No API costs, but less control over styling
-   - Doesn't integrate with review selection system
-
-2. **Manual Import:**
-   - Periodically export Google reviews manually
-   - Import as mock data
-   - No ongoing API costs, but not real-time
-
-3. **Third-Party Services:**
-   - Use review aggregation services (Trustpilot, ReviewTrackers)
-   - Combines multiple sources
-   - Additional subscription costs
+- Google Places API returns a maximum of 5 reviews per call.
+- Additional requests incur Google Maps Platform usage costs.
+- Responses should be cached for 24 hours in production to comply with Google guidelines and control costs.
+- A real database would be required to persist Google review selections across serverless deployments (in-memory fallback is used currently).
 
 ## Setup Instructions
 

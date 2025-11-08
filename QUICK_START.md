@@ -7,11 +7,12 @@
 npm install
 ```
 
-### Step 2: Set Up Hostaway Credentials
+### Step 2: Set Up API Credentials
 ```bash
 npm run setup
 ```
-This creates `.env.local` with the Hostaway API credentials automatically.
+This creates `.env.local` with the Hostaway API credentials automatically.  
+Optionally edit the file to add your `GOOGLE_PLACES_API_KEY` so Google reviews are fetched in addition to Hostaway data.
 
 ### Step 3: Start the Server
 ```bash
@@ -35,7 +36,7 @@ npm run dev
 3. **Filter Reviews**:
    - Select a property from dropdown
    - Set minimum rating (9+, 8+, etc.)
-   - Filter by channel (Airbnb, Booking.com)
+   - Filter by channel (Airbnb, Booking.com, Google, Direct)
    - Search for specific guests or keywords
    - Sort by date or rating
 4. **Toggle Visibility** - Click "Show on Website" / "Hide on Website" buttons
@@ -54,6 +55,7 @@ npm run dev
 ```bash
 curl http://localhost:3000/api/reviews/hostaway
 ```
+> When `GOOGLE_PLACES_API_KEY` is configured, the response includes Google reviews alongside Hostaway and mock data.
 
 ### Get All Properties
 ```bash

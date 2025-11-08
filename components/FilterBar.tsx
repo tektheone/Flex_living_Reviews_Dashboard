@@ -81,6 +81,7 @@ export default function FilterBar({ properties, onFilterChange }: FilterBarProps
             <option value="Airbnb">Airbnb</option>
             <option value="Booking.com">Booking.com</option>
             <option value="Direct">Direct</option>
+            <option value="Google">Google</option>
           </select>
         </div>
         

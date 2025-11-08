@@ -7,13 +7,21 @@ All requirements from the Flex Living Developer Assessment have been successfull
 ## 🎯 Deliverables
 
 ### 1. ✅ Hostaway Integration (Mocked)
-- **API Route**: `/api/reviews/hostaway` - Fully functional and tested
+- **API Route**: `/api/reviews/hostaway` - Fully functional and tested (also aggregates Google reviews when configured)
 - **Features**:
   - Integrates with Hostaway Reviews API (sandbox)
   - Merges with realistic mock data (20 reviews)
   - Normalizes reviews by listing, type, channel, and date
   - Calculates ratings from category breakdowns
   - Returns structured, usable JSON data
+
+### 1b. ✅ Google Reviews Integration
+- **Status**: Implemented (optional via `GOOGLE_PLACES_API_KEY`)
+- **Features**:
+  - Fetches up to 5 Google reviews per property using Places API
+  - Normalizes and merges with existing review feed (channel labeled `Google`)
+  - Gracefully skips when API key is missing, ensuring resilience
+  - Shares review selection workflow with Hostaway data
 
 ### 2. ✅ Manager Dashboard (`/dashboard`)
 - **URL**: http://localhost:3000/dashboard
@@ -24,7 +32,7 @@ All requirements from the Flex Living Developer Assessment have been successfull
   - **Filtering Options**:
     - Filter by property
     - Filter by minimum rating (9+, 8+, 7+, 6+)
-    - Filter by channel (Airbnb, Booking.com, Direct)
+  - Filter by channel (Airbnb, Booking.com, Google, Direct)
     - Search by guest name or review text
     - Sort by date or rating (ascending/descending)
   - **Review Selection**: Toggle "Show on Website" button for each review
@@ -49,17 +57,11 @@ All requirements from the Flex Living Developer Assessment have been successfull
   - Booking card sidebar (UI only)
   - Consistent with modern property listing sites
 
-### 4. ✅ Google Reviews (Exploration)
-- **Status**: Researched and documented
-- **Findings** (in DOCUMENTATION.md):
-  - API is available through Google Places API
-  - Costs $0.032 per request with reviews
-  - Limited to 5 reviews per request
-  - Requires Place ID for each property
-  - Attribution requirements must be followed
-  - **Feasibility**: Technically feasible but with limitations
-  - **Recommendation**: Can be added as supplementary source
-  - Alternative approaches documented
+### 4. ✅ Google Reviews Integration
+- Fully integrated into the aggregated reviews feed
+- Optional via `GOOGLE_PLACES_API_KEY`
+- Uses property-level Google Place IDs stored in `data/mock-properties.json`
+- Results display alongside Hostaway data with channel filtering support
 
 ## 📦 Source Code Structure
 
@@ -82,20 +84,23 @@ flex/
 │   ├── StarRating.tsx            # ✅ 5-star rating display
 │   ├── ReviewCard.tsx            # ✅ Review card with actions
 │   ├── PropertyCard.tsx          # ✅ Property stats card
-│   └── FilterBar.tsx             # ✅ Advanced filtering UI
+│   ├── FilterBar.tsx             # ✅ Advanced filtering UI
+│   └── Toast.tsx                 # ✅ Toast notifications for UX
 │
 ├── lib/                          # Business logic
 │   ├── hostaway.ts               # ✅ Hostaway API client
-│   ├── reviews.ts                # ✅ Review normalization
+│   ├── googleReviews.ts          # ✅ Google Places API integration
+│   ├── reviewUtils.ts            # ✅ Shared normalization helpers
+│   ├── reviews.ts                # ✅ Review aggregation
 │   ├── properties.ts             # ✅ Property data utilities
-│   └── storage.ts                # ✅ JSON file storage
+│   └── storage.ts                # ✅ JSON storage with serverless fallback
 │
 ├── types/                        # TypeScript definitions
 │   └── review.ts                 # ✅ All interfaces
 │
 ├── data/                         # Data storage
 │   ├── mock-reviews.json         # ✅ 20 realistic reviews
-│   ├── mock-properties.json      # ✅ 4 properties
+│   ├── mock-properties.json      # ✅ 4 properties (with Google Place IDs)
 │   └── review-selections.json    # ✅ Selected review IDs
 │
 ├── DOCUMENTATION.md              # ✅ Technical documentation (2 pages)
@@ -190,12 +195,12 @@ Expected response: 200 OK with normalized review data in JSON format.
 - Realistic pricing: £145-£325 per night
 
 ### Reviews
-- 20 realistic guest reviews
-- Ratings range: 6.0 to 10.0
-- Multiple channels: Airbnb, Booking.com
-- Date range: August - November 2024
+- 20 handcrafted reviews (Airbnb, Booking.com) + live Google reviews (when API key provided)
+- Ratings range: 4.0 to 10.0
+- Channels: Airbnb, Booking.com, Google, Direct
+- Date range: August 2024 – present (Google reviews use real timestamps)
 - Variety of feedback (positive and constructive)
-- 7 reviews pre-selected for display
+- 7 reviews pre-selected for display (Hostaway + mock data)
 
 ## 📄 Documentation
 

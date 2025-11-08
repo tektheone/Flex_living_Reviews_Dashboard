@@ -19,5 +19,7 @@ if (fs.existsSync(envPath)) {
 console.log('\n📋 Environment variables set:');
 console.log('   HOSTAWAY_ACCOUNT_ID=61148');
 console.log('   HOSTAWAY_API_KEY=f943...9152 (hidden for security)');
+console.log('   GOOGLE_PLACES_API_KEY=<empty — add your key to enable Google reviews>');
 console.log('\n🚀 You can now run: npm run dev');
+console.log('\n💡 Optional: add your Google Places API key to .env.local to fetch Google reviews.');
 

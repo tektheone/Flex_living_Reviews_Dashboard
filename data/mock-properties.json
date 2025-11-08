@@ -24,7 +24,8 @@
       "Hair dryer"
     ],
     "averageRating": 8.4,
-    "totalReviews": 8
+    "totalReviews": 8,
+    "googlePlaceId": "ChIJF0Z0RJYcdkgRcTncn6BSHPM"
   },
   {
     "id": "2",
@@ -51,7 +52,8 @@
       "Premium bedding"
     ],
     "averageRating": 8.8,
-    "totalReviews": 5
+    "totalReviews": 5,
+    "googlePlaceId": "ChIJK5FJZk8DdkgR3Bmq04Y0Zu8"
   },
   {
     "id": "3",
@@ -78,7 +80,8 @@
       "Iron & board"
     ],
     "averageRating": 7.8,
-    "totalReviews": 4
+    "totalReviews": 4,
+    "googlePlaceId": "ChIJM4xTUzUEdkgR1xL2VsQVhUg"
   },
   {
     "id": "4",
@@ -107,7 +110,8 @@
       "Espresso machine"
     ],
     "averageRating": 9.5,
-    "totalReviews": 4
+    "totalReviews": 4,
+    "googlePlaceId": "ChIJL6wn6o0FdkgRHrfnU3K2kDI"
   }
 ]
 

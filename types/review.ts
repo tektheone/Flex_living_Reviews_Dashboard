@@ -59,6 +59,7 @@ export interface Property {
   amenities: string[];
   averageRating: number;
   totalReviews: number;
+  googlePlaceId?: string;
 }
 
 // API Response Types
