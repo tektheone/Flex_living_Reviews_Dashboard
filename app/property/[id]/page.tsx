@@ -49,10 +49,18 @@ export default function PropertyPage() {
   
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading property...</p>
+          <div className="relative inline-flex items-center justify-center mb-6">
+            {/* Outer ring */}
+            <div className="absolute animate-spin rounded-full h-20 w-20 border-4 border-indigo-200"></div>
+            {/* Inner spinning ring */}
+            <div className="absolute animate-spin rounded-full h-20 w-20 border-4 border-transparent border-t-indigo-600 border-r-indigo-600"></div>
+            {/* Center dot */}
+            <div className="w-3 h-3 bg-indigo-600 rounded-full"></div>
+          </div>
+          <p className="text-gray-700 font-semibold text-lg">Loading property...</p>
+          <p className="text-gray-500 text-sm mt-2">Please wait</p>
         </div>
       </div>
     );
