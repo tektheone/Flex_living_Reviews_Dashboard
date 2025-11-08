@@ -206,11 +206,4 @@ curl http://localhost:3000/api/reviews/hostaway
 - Multi-language support
 - Export functionality for reports
 
-## 📄 License
-
-This project was created as part of the Flex Living Developer Assessment.
-
-## 👤 Author
-
-Created for Flex Living - Developer Assessment
 
