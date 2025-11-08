@@ -1,0 +1,323 @@
+[
+  {
+    "id": 1001,
+    "type": "guest-to-host",
+    "status": "published",
+    "rating": 9,
+    "publicReview": "Absolutely loved our stay! The apartment was spotless, modern, and in a fantastic location. Communication with the host was excellent throughout.",
+    "reviewCategory": [
+      {"category": "cleanliness", "rating": 10},
+      {"category": "communication", "rating": 10},
+      {"category": "respect_house_rules", "rating": 9}
+    ],
+    "submittedAt": "2024-11-01 14:30:00",
+    "guestName": "Sarah Johnson",
+    "listingName": "2B N1 A - 29 Shoreditch Heights",
+    "channel": "Airbnb"
+  },
+  {
+    "id": 1002,
+    "type": "guest-to-host",
+    "status": "published",
+    "rating": 8,
+    "publicReview": "Great location near public transport. The apartment had everything we needed. Only minor issue was the WiFi speed could be better for remote work.",
+    "reviewCategory": [
+      {"category": "cleanliness", "rating": 9},
+      {"category": "communication", "rating": 8},
+      {"category": "respect_house_rules", "rating": 8}
+    ],
+    "submittedAt": "2024-10-28 09:15:00",
+    "guestName": "Michael Chen",
+    "listingName": "2B N1 A - 29 Shoreditch Heights",
+    "channel": "Booking.com"
+  },
+  {
+    "id": 1003,
+    "type": "guest-to-host",
+    "status": "published",
+    "rating": 10,
+    "publicReview": "Perfect stay! The host was incredibly responsive and helpful. The apartment exceeded our expectations. Would definitely book again!",
+    "reviewCategory": [
+      {"category": "cleanliness", "rating": 10},
+      {"category": "communication", "rating": 10},
+      {"category": "respect_house_rules", "rating": 10}
+    ],
+    "submittedAt": "2024-10-25 16:45:00",
+    "guestName": "Emma Thompson",
+    "listingName": "Studio E2 - Canary Wharf Tower",
+    "channel": "Airbnb"
+  },
+  {
+    "id": 1004,
+    "type": "guest-to-host",
+    "status": "published",
+    "rating": 7,
+    "publicReview": "Good apartment overall. The location is excellent but the noise from the street can be quite loud at night. Otherwise comfortable stay.",
+    "reviewCategory": [
+      {"category": "cleanliness", "rating": 8},
+      {"category": "communication", "rating": 7},
+      {"category": "respect_house_rules", "rating": 7}
+    ],
+    "submittedAt": "2024-10-20 11:20:00",
+    "guestName": "David Martinez",
+    "listingName": "2B N1 A - 29 Shoreditch Heights",
+    "channel": "Booking.com"
+  },
+  {
+    "id": 1005,
+    "type": "guest-to-host",
+    "status": "published",
+    "rating": 9,
+    "publicReview": "Wonderful experience! The studio is beautifully designed and has amazing views. Kitchen was well-equipped. Highly recommend!",
+    "reviewCategory": [
+      {"category": "cleanliness", "rating": 9},
+      {"category": "communication", "rating": 9},
+      {"category": "respect_house_rules", "rating": 9}
+    ],
+    "submittedAt": "2024-10-18 13:55:00",
+    "guestName": "Lisa Anderson",
+    "listingName": "Studio E2 - Canary Wharf Tower",
+    "channel": "Airbnb"
+  },
+  {
+    "id": 1006,
+    "type": "guest-to-host",
+    "status": "published",
+    "rating": 6,
+    "publicReview": "The apartment was okay but didn't quite match the photos. It was clean but felt smaller than expected. Location was good though.",
+    "reviewCategory": [
+      {"category": "cleanliness", "rating": 7},
+      {"category": "communication", "rating": 6},
+      {"category": "respect_house_rules", "rating": 6}
+    ],
+    "submittedAt": "2024-10-15 10:30:00",
+    "guestName": "Robert Wilson",
+    "listingName": "1B SW1 - Westminster Gardens",
+    "channel": "Booking.com"
+  },
+  {
+    "id": 1007,
+    "type": "guest-to-host",
+    "status": "published",
+    "rating": 10,
+    "publicReview": "Outstanding! Every detail was perfect. The host thought of everything. The location near Westminster is unbeatable. Five stars!",
+    "reviewCategory": [
+      {"category": "cleanliness", "rating": 10},
+      {"category": "communication", "rating": 10},
+      {"category": "respect_house_rules", "rating": 10}
+    ],
+    "submittedAt": "2024-10-12 15:00:00",
+    "guestName": "Jennifer Brown",
+    "listingName": "1B SW1 - Westminster Gardens",
+    "channel": "Airbnb"
+  },
+  {
+    "id": 1008,
+    "type": "guest-to-host",
+    "status": "published",
+    "rating": 8,
+    "publicReview": "Really enjoyed our stay. The apartment is in a great area with lots of restaurants nearby. Beds were comfortable and everything was clean.",
+    "reviewCategory": [
+      {"category": "cleanliness", "rating": 9},
+      {"category": "communication", "rating": 8},
+      {"category": "respect_house_rules", "rating": 8}
+    ],
+    "submittedAt": "2024-10-10 12:40:00",
+    "guestName": "James Taylor",
+    "listingName": "2B N1 A - 29 Shoreditch Heights",
+    "channel": "Airbnb"
+  },
+  {
+    "id": 1009,
+    "type": "guest-to-host",
+    "status": "published",
+    "rating": 9,
+    "publicReview": "Fantastic apartment with stunning views of the Thames. Modern amenities and very responsive host. Would love to stay here again!",
+    "reviewCategory": [
+      {"category": "cleanliness", "rating": 10},
+      {"category": "communication", "rating": 9},
+      {"category": "respect_house_rules", "rating": 9}
+    ],
+    "submittedAt": "2024-10-08 14:25:00",
+    "guestName": "Maria Garcia",
+    "listingName": "Studio E2 - Canary Wharf Tower",
+    "channel": "Booking.com"
+  },
+  {
+    "id": 1010,
+    "type": "guest-to-host",
+    "status": "published",
+    "rating": 7,
+    "publicReview": "Decent place for a short stay. Check-in process was smooth. The apartment could use some updates but it was functional.",
+    "reviewCategory": [
+      {"category": "cleanliness", "rating": 7},
+      {"category": "communication", "rating": 8},
+      {"category": "respect_house_rules", "rating": 7}
+    ],
+    "submittedAt": "2024-10-05 09:50:00",
+    "guestName": "Daniel Lee",
+    "listingName": "1B SW1 - Westminster Gardens",
+    "channel": "Airbnb"
+  },
+  {
+    "id": 1011,
+    "type": "guest-to-host",
+    "status": "published",
+    "rating": 10,
+    "publicReview": "Best accommodation we've had in London! Impeccably clean, stylish decor, and the host was super helpful with local recommendations. Absolutely perfect!",
+    "reviewCategory": [
+      {"category": "cleanliness", "rating": 10},
+      {"category": "communication", "rating": 10},
+      {"category": "respect_house_rules", "rating": 10}
+    ],
+    "submittedAt": "2024-10-01 17:30:00",
+    "guestName": "Sophie Martin",
+    "listingName": "3B W1 - Mayfair Residence",
+    "channel": "Airbnb"
+  },
+  {
+    "id": 1012,
+    "type": "guest-to-host",
+    "status": "published",
+    "rating": 8,
+    "publicReview": "Very good stay. The apartment is spacious and well-maintained. Great location in Mayfair with easy access to shops and restaurants.",
+    "reviewCategory": [
+      {"category": "cleanliness", "rating": 9},
+      {"category": "communication", "rating": 8},
+      {"category": "respect_house_rules", "rating": 8}
+    ],
+    "submittedAt": "2024-09-28 11:15:00",
+    "guestName": "Thomas White",
+    "listingName": "3B W1 - Mayfair Residence",
+    "channel": "Booking.com"
+  },
+  {
+    "id": 1013,
+    "type": "guest-to-host",
+    "status": "published",
+    "rating": 9,
+    "publicReview": "Loved the modern design and attention to detail. The beds were very comfortable and the kitchen had everything we needed for cooking.",
+    "reviewCategory": [
+      {"category": "cleanliness", "rating": 9},
+      {"category": "communication", "rating": 9},
+      {"category": "respect_house_rules", "rating": 9}
+    ],
+    "submittedAt": "2024-09-25 13:20:00",
+    "guestName": "Rachel Green",
+    "listingName": "2B N1 A - 29 Shoreditch Heights",
+    "channel": "Airbnb"
+  },
+  {
+    "id": 1014,
+    "type": "guest-to-host",
+    "status": "published",
+    "rating": 6,
+    "publicReview": "The apartment was fine but had some maintenance issues. The heating wasn't working properly when we arrived but the host fixed it quickly.",
+    "reviewCategory": [
+      {"category": "cleanliness", "rating": 7},
+      {"category": "communication", "rating": 7},
+      {"category": "respect_house_rules", "rating": 6}
+    ],
+    "submittedAt": "2024-09-20 10:45:00",
+    "guestName": "Kevin Brown",
+    "listingName": "Studio E2 - Canary Wharf Tower",
+    "channel": "Booking.com"
+  },
+  {
+    "id": 1015,
+    "type": "guest-to-host",
+    "status": "published",
+    "rating": 10,
+    "publicReview": "Exceptional property! Everything was as described and more. The location is perfect for exploring London. Host was amazing with communication. Can't fault anything!",
+    "reviewCategory": [
+      {"category": "cleanliness", "rating": 10},
+      {"category": "communication", "rating": 10},
+      {"category": "respect_house_rules", "rating": 10}
+    ],
+    "submittedAt": "2024-09-18 16:00:00",
+    "guestName": "Amanda Clarke",
+    "listingName": "3B W1 - Mayfair Residence",
+    "channel": "Airbnb"
+  },
+  {
+    "id": 1016,
+    "type": "guest-to-host",
+    "status": "published",
+    "rating": 8,
+    "publicReview": "Great experience overall. The apartment is in a prime location and well-equipped. Only suggestion would be to provide more towels.",
+    "reviewCategory": [
+      {"category": "cleanliness", "rating": 8},
+      {"category": "communication", "rating": 9},
+      {"category": "respect_house_rules", "rating": 8}
+    ],
+    "submittedAt": "2024-09-15 12:30:00",
+    "guestName": "Christopher Davis",
+    "listingName": "1B SW1 - Westminster Gardens",
+    "channel": "Booking.com"
+  },
+  {
+    "id": 1017,
+    "type": "guest-to-host",
+    "status": "published",
+    "rating": 9,
+    "publicReview": "Wonderful apartment with great amenities. The view from the balcony is amazing. Host was very accommodating with our early check-in request.",
+    "reviewCategory": [
+      {"category": "cleanliness", "rating": 9},
+      {"category": "communication", "rating": 10},
+      {"category": "respect_house_rules", "rating": 9}
+    ],
+    "submittedAt": "2024-09-10 14:50:00",
+    "guestName": "Nicole Adams",
+    "listingName": "2B N1 A - 29 Shoreditch Heights",
+    "channel": "Airbnb"
+  },
+  {
+    "id": 1018,
+    "type": "guest-to-host",
+    "status": "published",
+    "rating": 7,
+    "publicReview": "Good value for money. The apartment was clean and functional. Location is convenient for business travelers.",
+    "reviewCategory": [
+      {"category": "cleanliness", "rating": 8},
+      {"category": "communication", "rating": 7},
+      {"category": "respect_house_rules", "rating": 7}
+    ],
+    "submittedAt": "2024-09-05 09:20:00",
+    "guestName": "Peter Robinson",
+    "listingName": "Studio E2 - Canary Wharf Tower",
+    "channel": "Booking.com"
+  },
+  {
+    "id": 1019,
+    "type": "guest-to-host",
+    "status": "published",
+    "rating": 10,
+    "publicReview": "Absolutely perfect in every way! The apartment is beautiful, spotlessly clean, and in an incredible location. The host went above and beyond. Highly recommend!",
+    "reviewCategory": [
+      {"category": "cleanliness", "rating": 10},
+      {"category": "communication", "rating": 10},
+      {"category": "respect_house_rules", "rating": 10}
+    ],
+    "submittedAt": "2024-09-01 15:40:00",
+    "guestName": "Elizabeth Harris",
+    "listingName": "3B W1 - Mayfair Residence",
+    "channel": "Airbnb"
+  },
+  {
+    "id": 1020,
+    "type": "guest-to-host",
+    "status": "published",
+    "rating": 8,
+    "publicReview": "Really nice apartment with modern furnishings. The neighborhood is vibrant with lots to do. Would definitely stay here again on our next visit to London.",
+    "reviewCategory": [
+      {"category": "cleanliness", "rating": 9},
+      {"category": "communication", "rating": 8},
+      {"category": "respect_house_rules", "rating": 8}
+    ],
+    "submittedAt": "2024-08-28 11:00:00",
+    "guestName": "William Turner",
+    "listingName": "2B N1 A - 29 Shoreditch Heights",
+    "channel": "Booking.com"
+  }
+]
+
