@@ -31,6 +31,7 @@ export interface NormalizedReview {
   id: number;
   propertyId: string;
   propertyName: string;
+  propertyImage: string;
   guestName: string;
   guestFirstName: string;
   rating: number;

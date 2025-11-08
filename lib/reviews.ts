@@ -2,6 +2,7 @@ import { HostawayReview, NormalizedReview } from "@/types/review";
 import { fetchHostawayReviews } from "./hostaway";
 import { getSelectedReviewIds } from "./storage";
 import mockReviews from "@/data/mock-reviews.json";
+import mockProperties from "@/data/mock-properties.json";
 
 export function extractPropertyId(listingName: string): string {
   // Extract a simple ID from the listing name
@@ -17,6 +18,11 @@ export function extractPropertyId(listingName: string): string {
   
   // Default fallback
   return "1";
+}
+
+export function getPropertyImage(propertyId: string): string {
+  const property = (mockProperties as any[]).find((p: any) => p.id === propertyId);
+  return property?.images?.[0] || "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800";
 }
 
 export function formatGuestName(fullName: string): string {
@@ -59,6 +65,7 @@ export async function normalizeReview(
     id: review.id,
     propertyId,
     propertyName: review.listingName,
+    propertyImage: getPropertyImage(propertyId),
     guestName: formatGuestName(review.guestName),
     guestFirstName: review.guestName.split(" ")[0],
     rating,
