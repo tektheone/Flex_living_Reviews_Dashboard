@@ -525,6 +525,57 @@ npm run build
 npm run start
 ```
 
+## Deployment to Vercel
+
+### Environment Variables Setup
+
+When deploying to Vercel, you must add the Hostaway credentials as environment variables:
+
+1. Go to your project in Vercel dashboard
+2. Navigate to **Settings** → **Environment Variables**
+3. Add the following variables:
+
+```
+Name: HOSTAWAY_ACCOUNT_ID
+Value: 61148
+
+Name: HOSTAWAY_API_KEY
+Value: f94377ebbbb479490bb3ec364649168dc443dda2e4830facaf5de2e74ccc9152
+```
+
+4. Select environments: **Production**, **Preview**, **Development**
+5. Click **Save**
+6. **Redeploy** your application for changes to take effect
+
+### Important Notes
+
+- **The app will work without credentials** (falls back to mock data)
+- **With credentials**: Attempts to fetch from Hostaway API, then merges with mock data
+- **Without credentials**: Uses mock data only, logs warning in console
+- The Hostaway sandbox is empty, so mock data provides the actual review content
+- This demonstrates proper API integration patterns for production use
+
+### Vercel Deployment Steps
+
+1. **Push to GitHub** (already done)
+2. **Connect to Vercel**:
+   - Go to https://vercel.com
+   - Click "New Project"
+   - Import your GitHub repository
+   - Vercel will auto-detect Next.js
+3. **Add Environment Variables** (see above)
+4. **Deploy**: Click "Deploy"
+5. **Access**: Your site will be live at `your-project.vercel.app`
+
+### Build Configuration
+
+Vercel automatically detects Next.js and uses:
+- **Build Command**: `npm run build`
+- **Output Directory**: `.next`
+- **Install Command**: `npm install`
+
+No additional configuration needed!
+
 ## Future Improvements
 
 ### Database Migration

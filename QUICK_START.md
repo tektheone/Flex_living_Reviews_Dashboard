@@ -1,18 +1,24 @@
 # Quick Start Guide - Flex Living Reviews Dashboard
 
-## 🚀 Get Started in 3 Steps
+## 🚀 Get Started in 4 Steps
 
 ### Step 1: Install Dependencies
 ```bash
 npm install
 ```
 
-### Step 2: Start the Server
+### Step 2: Set Up Hostaway Credentials
+```bash
+npm run setup
+```
+This creates `.env.local` with the Hostaway API credentials automatically.
+
+### Step 3: Start the Server
 ```bash
 npm run dev
 ```
 
-### Step 3: Open Your Browser
+### Step 4: Open Your Browser
 - **Home Page**: http://localhost:3000
 - **Manager Dashboard**: http://localhost:3000/dashboard
 - **Property Examples**:

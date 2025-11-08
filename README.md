@@ -44,6 +44,13 @@ npm install
 ```
 
 3. Set up environment variables:
+
+**Option A - Quick Setup (Recommended):**
+```bash
+node setup-env.js
+```
+
+**Option B - Manual Setup:**
 Create a `.env.local` file in the root directory:
 ```
 HOSTAWAY_ACCOUNT_ID=61148
