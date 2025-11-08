@@ -5,6 +5,7 @@ import { NormalizedReview, Property, PropertyStats } from "@/types/review";
 import ReviewCard from "@/components/ReviewCard";
 import PropertyCard from "@/components/PropertyCard";
 import FilterBar, { Filters } from "@/components/FilterBar";
+import Toast from "@/components/Toast";
 import Link from "next/link";
 
 export default function DashboardPage() {
@@ -13,6 +14,8 @@ export default function DashboardPage() {
   const [filteredReviews, setFilteredReviews] = useState<NormalizedReview[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [toast, setToast] = useState<{ message: string; type: "success" | "error" | "info" } | null>(null);
+  const [updatingReviewId, setUpdatingReviewId] = useState<number | null>(null);
   
   useEffect(() => {
     fetchData();
@@ -51,6 +54,8 @@ export default function DashboardPage() {
   };
   
   const handleToggleSelection = async (reviewId: number) => {
+    setUpdatingReviewId(reviewId);
+    
     try {
       const response = await fetch("/api/reviews/toggle-selection", {
         method: "POST",
@@ -82,9 +87,24 @@ export default function DashboardPage() {
             : review
         )
       );
+      
+      // Show success toast
+      setToast({
+        message: data.data.isSelected 
+          ? "Review is now visible on website" 
+          : "Review hidden from website",
+        type: "success"
+      });
     } catch (err) {
       console.error("Error toggling selection:", err);
-      alert("Failed to update review selection. Please try again.");
+      
+      // Show error toast
+      setToast({
+        message: "Failed to update review. Please try again.",
+        type: "error"
+      });
+    } finally {
+      setUpdatingReviewId(null);
     }
   };
   
@@ -406,12 +426,22 @@ export default function DashboardPage() {
                   showProperty={true}
                   showActions={true}
                   onToggleSelection={handleToggleSelection}
+                  isUpdating={updatingReviewId === review.id}
                 />
               ))}
             </div>
           )}
         </div>
       </main>
+      
+      {/* Toast Notification */}
+      {toast && (
+        <Toast
+          message={toast.message}
+          type={toast.type}
+          onClose={() => setToast(null)}
+        />
+      )}
     </div>
   );
 }
